@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brian Onkangi - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --secondary: #7c3aed;
+            --dark: #1e293b;
+            --light: #f1f5f9;
+            --accent: #06b6d4;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background: var(--light);
+            scroll-behavior: smooth;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 150px 2rem 100px;
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .profile-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, #f59e0b, #ec4899);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            border: 6px solid rgba(255,255,255,0.3);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero .tagline {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        section {
+            background: white;
+            border-radius: 20px;
+            padding: 4rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        /* Resume Section */
+        .resume-grid {
+            display: grid;
+            gap: 3rem;
+        }
+
+        .resume-section {
+            border-left: 3px solid var(--primary);
+            padding-left: 2rem;
+        }
+
+        .resume-item {
+            margin-bottom: 2.5rem;
+            padding: 1.5rem;
+            background: var(--light);
+            border-radius: 12px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .resume-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .resume-item h4 {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .meta {
+            color: #64748b;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-badge {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 700;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 10px rgba(37,99,235,0.3);
+        }
+
+        .skill-badge:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            border-color: var(--primary);
+        }
+
+        .project-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            margin-bottom: 1.5rem;
+            color: #475569;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .tech-tag {
+            background: var(--primary);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Lab Challenges Section */
+        .lab-challenge {
+            background: white;
+            border: 2px solid var(--light);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .lab-challenge h3 {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .challenge-section {
+            margin: 2rem 0;
+        }
+
+        .challenge-section h4 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .challenge-section h4::before {
+            content: '▸';
+            color: var(--accent);
+            font-size: 1.4rem;
+        }
+
+        .screenshot-box {
+            background: #f8fafc;
+            border: 3px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 4rem 2rem;
+            text-align: center;
+            color: #64748b;
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .tools-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .tool-item {
+            background: var(--light);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .contact-section h2 {
+            color: white;
+        }
+
+        .contact-section h2::after {
+            background: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .contact-card:hover {
+            background: rgba(255,255,255,0.25);
+            transform: scale(1.05);
+        }
+
+        .contact-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2.5rem;
+            font-size: 1rem;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        ul li::before {
+            content: '●';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { gap: 1rem; }
+            section { padding: 2rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">BO</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#labs">Lab Challenges</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="profile-container">
+            <div class="profile-image">BO</div>
+            <h1>Brian Onkangi</h1>
+            <p class="tagline">
+                Data Analyst | Business Intelligence Analyst | Business Analyst<br>
+                Dedicated to analyzing data and providing insights to help businesses make informed decisions.
+            </p>
+        </div>
+    </section>
+
+    <div class="container">
+        <section id="resume">
+            <h2>Resume</h2>
+            
+            <div class="resume-grid">
+                <div class="resume-section">
+                    <h3>🎓 Education</h3>
+                    <div class="resume-item">
+                        <h4>Bachelor of Science in Computer Science</h4>
+                        <p class="meta">Rongo University | 2018 - 2022</p>
+                        <p>Specialization in Data Analytics</p>
+                    </div>
+    
+                </div>
+
+                <div class="resume-section">
+                    <h3>💼 Work Experience</h3>
+                    <div class="resume-item">
+                        <h4>Business Application Support Intern</h4>
+                        <p class="meta">Kenya Revenue Authority | January 2025 - Present</p>
+                        <ul>
+                            <li>Creating SQL scripts to add new users into the Real Time Monitoring System (RTMS) Database. </li>
+                            <li>Performing Data Migration for users from SIMBA to iCMS by creating SQL Scripts and running them in the Database.</li>
+                            <li>Creation, Registration, alteration and cancellation of clearance entries in iCMS. </li>
+                            <li>Performing Data Migration for users from SIMBA to iCMS by creating SQL Scripts and running them in the Database. </li>
+                            <li>Compiling Request for Change (RFCs) Documents</li>
+                        </ul>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Network Technician</h4>
+                        <p class="meta">Wifi Yetu Company| March 2020 - February 2024</p>
+                        <ul>
+                            <li>Configuration of Internet Devices therefore achieving a less than 1% packet loss rate and tracking bandwidth utilization.</li>
+                            <li>Promotion of the Company Brand through Marketing achieving an 8 out of 10 rating user satisfaction with the services offered</li>
+                            <li>Maintenance and Repair on Internet Devices therefore achieving a less than 30 minutes response time when dealing with critical issues.</li>
+                            <li>IT Support</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3>🏆 Certifications</h3>
+                    <div class="resume-item">
+                        <h4>Artificial Intelligence and Cloud Computing by Huawei </h4>
+                        <p class="meta">Issued: July 2025</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Cybersecurity and Emerging Technologies Awareness </h4>
+                        <p class="meta">Issued: March 2025</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Digital Skills </h4>
+                        <p class="meta">Issued: June 2023</p>
+                    </div>
+    
+                </div>
+
+                <div class="resume-section">
+                    <h3>🛠️ Technical Skills</h3>
+                    <div class="skills-container">
+                        <div class="skill-badge">Data Analytics</div>
+                        <div class="skill-badge">Networking</div>
+                        <div class="skill-badge">ICT Training</div>
+                        <div class="skill-badge">Web Development</div>
+                        <div class="skill-badge">Computer Repairs and Maintenance</div>
+                        <div class="skill-badge">Interpersonal and Intrapersonal communication skills</div>
+                        <div class="skill-badge">Teamwork</div>
+                        <div class="skill-badge">Time Management</div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Featured Projects</h2>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>TujueAI Platform</h3>
+                    <p>Developed an AI agent that is meant to be hosted locally with less web intervention to improve on data privacy/sharing</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">pgvector</span>
+                        <span class="tech-tag">LangChain</span>                       
+                        <span class="tech-tag">REST API</span>
+                        <span class="tech-tag">Docker</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="labs">
+            <h2>Lab Challenges</h2>
+
+            <div class="lab-challenge">
+                <h3>Challenge 1: Sales Performance Analysis</h3>
+                
+                <div class="challenge-section">
+                    <h4>Problem Statement</h4>
+                    <p>Identify underperforming sales regions and products to recommend areas for improvement.</p>
+                </div>
+
+                <div class="challenge-section">
+                    <h4>Approach</h4>
+                    <p>Cleaned and transformed raw sales data using Power Query</p>
+                    <p>Built calculated measures (e.g., profit margin, YoY growth)</p>
+                    <p>Designed an interactive dashboard displaying KPIs by region, product, and time</p>
+                </div>
+
+                <div class="challenge-section">
+                    <h4>Tools Used</h4>
+                    <div class="tools-list">
+                        <div class="tool-item"><strong>Power BI</strong></div>
+                        <div class="tool-item"><strong>DAX</strong></div>
+                        <div class="tool-item"><strong>Excel</strong></div>
+                        
+                    </div>
+                </div>
+
+                <div class="challenge-section">
+                    <h4>Key Lessons Learned</h4>
+                    <ul>
+                        <li>Importance of data modeling and relationships in BI tools.</li>
+                        <li>Effective use of visuals like heatmaps and KPI cards to highlight key insights.</li>
+                        <li>The importance of storytelling through data visualization.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="lab-challenge">
+                <h3>Challenge 2: HR Analytics Dashboard</h3>
+                
+                <div class="challenge-section">
+                    <h4>Problem Statement</h4>
+                    <p>Analyze employee turnover and identify trends related to departments, tenure, and performance.</p>
+                </div>
+
+                <div class="challenge-section">
+                    <h4>Approach</h4>
+                    <p>Imported HR dataset, handled missing values, and created calculated fields for attrition rate.</p>
+                    <p>Designed a dashboard showing turnover trends and department-level analysis.</p>
+                </div>
+
+                <div class="challenge-section">
+                    <h4>Tools Used</h4>
+                    <div class="tools-list">
+                        <div class="tool-item"><strong>Tableau</strong></div>
+                        <div class="tool-item"><strong>SQL</strong></div>
+                    </div>
+                </div>
+
+                <div class="challenge-section">
+                    <h4>Key Lessons Learned</h4>
+                    <ul>
+                        <li>Data blending between multiple sources to get comprehensive insights.</li>
+                        <li>Storytelling with data — turning raw metrics into actionable business decisions.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="lab-challenge">
+                <h3>Challenge 3: Customer Segmentation Using Clustering</h3>
+                
+                <div class="challenge-section">
+                    <h4>Problem Statement</h4>
+                    <p>Segment customers based on purchasing behavior to support targeted marketing strategies.</p>
+                </div>
+
+                <div class="challenge-section">
+                    <h4>Approach</h4>
+                    <p>Applied K-means clustering on customer data using Python (pandas, scikit-learn).</p>
+                    <p>Visualized clusters in Tableau for interpretation.</p>
+                </div>
+
+                <div class="challenge-section">
+                    <h4>Tools Used</h4>
+                    <div class="tools-list">
+                        <div class="tool-item"><strong>Python</strong></div>
+                        <div class="tool-item"><strong>Tableau</strong></div>
+                    </div>
+                </div>
+
+                <div class="challenge-section">
+                    <h4>Key Lessons Learned</h4>
+                    <ul>
+                        <li>Combining data science and BI tools enhances analytical depth.</li>
+                        <li>Visual interpretation of clusters helps non-technical stakeholders understand results.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <h2>Get In Touch</h2>
+            <p style="text-align: center; margin-bottom: 2rem; font-size: 1.2rem; opacity: 0.95;">
+                I'm always open to discussing data analytics/business intelligence projects, collaboration opportunities, or just connecting with fellow security professionals!
+            </p>
+
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email</h3>
+                    <a href="mailto:brianonkangi@gmail.com">brianonkangi@gmail.com</a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">💼</div>
+                    <h3>LinkedIn</h3>
